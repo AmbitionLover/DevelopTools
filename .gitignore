@@ -1,0 +1,6 @@
+# Project exclude paths
+/ambi-admin/target/
+/ambi-common/target/
+/ambi-framework/target/
+/ambi-generator/target/
+/ambi-service/target/

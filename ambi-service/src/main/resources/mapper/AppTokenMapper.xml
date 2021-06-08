@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.ambitlu.mapper.AppTokenMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="work.ambitlu.entity.AppToken">
+        <id column="id" property="id" />
+        <result column="accessToken" property="accessToken" />
+        <result column="accessSecret" property="accessSecret" />
+        <result column="privilege" property="privilege" />
+        <result column="name" property="name" />
+        <result column="callbackUrl" property="callbackUrl" />
+        <result column="createTime" property="createTime" />
+        <result column="used" property="used" />
+        <result column="thirdUserAuth" property="thirdUserAuth" />
+        <result column="thirdCompanyAuth" property="thirdCompanyAuth" />
+        <result column="availableSealType" property="availableSealType" />
+        <result column="ipListType" property="ipListType" />
+        <result column="ipList" property="ipList" />
+        <result column="validTime" property="validTime" />
+        <result column="callback" property="callback" />
+    </resultMap>
+
+    <select id="get" resultType="work.ambitlu.entity.AppToken">
+        select * from APP_TOKEN where accessToken = #{token}
+    </select>
+
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.ambitlu.mapper.CompanyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="work.ambitlu.entity.Company">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="registerNo" property="registerNo" />
+        <result column="address" property="address" />
+        <result column="status" property="status" />
+        <result column="mobile" property="mobile" />
+        <result column="email" property="email" />
+        <result column="createTime" property="createTime" />
+        <result column="tenantType" property="tenantType" />
+        <result column="freeze" property="freeze" />
+        <result column="charger" property="charger" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="legalPerson" property="legalPerson" />
+        <result column="legalPersonId" property="legalPersonId" />
+        <result column="paperType" property="paperType" />
+        <result column="license" property="license" />
+        <result column="legalAuthorization" property="legalAuthorization" />
+        <result column="logo" property="logo" />
+        <result column="label" property="label" />
+        <result column="source" property="source" />
+        <result column="openCompanyId" property="openCompanyId" />
+        <result column="sendContractSwitch" property="sendContractSwitch" />
+        <result column="sendObjectControl" property="sendObjectControl" />
+        <result column="applyIndependent" property="applyIndependent" />
+        <result column="salt" property="salt" />
+        <result column="mobileHash" property="mobileHash" />
+        <result column="emailHash" property="emailHash" />
+        <result column="legalPersonIdHash" property="legalPersonIdHash" />
+    </resultMap>
+    <select id="platform" resultType="work.ambitlu.entity.Company">
+        select * from COMPANY where tenantType = 'CORPORATE' LIMIT 1
+    </select>
+
+</mapper>
