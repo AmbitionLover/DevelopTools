@@ -67,11 +67,14 @@ public class AppTokenServiceImpl extends ServiceImpl<AppTokenMapper, AppToken> i
 			appToken.setValidTime("LONG_TERM");
 		}
 
+		if (version > 423){
+			appToken.setCallbackConfig("GLOBAL");
+		}
+
 		if (version > 420){
 			Company platform = companyService.platform();
 			appToken.setDefaultSignatory(platform.getId());
 			appToken.setAvailableSealType("ALL");
-			appToken.setCallbackConfig("GLOBAL");
 		}
 
 		this.save(appToken);

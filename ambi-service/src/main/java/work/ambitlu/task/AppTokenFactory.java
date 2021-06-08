@@ -2,11 +2,16 @@ package work.ambitlu.task;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import work.ambitlu.bean.event.AppTokenTaskEvent;
 import work.ambitlu.bean.vo.TaskVo;
 import work.ambitlu.core.service.SalveDataBaseService;
+import work.ambitlu.domain.OperatorType;
 import work.ambitlu.dynamic.datasource.autoconfigure.DataSourceProperty;
+import work.ambitlu.entity.QysTaskRecord;
 import work.ambitlu.service.IAppTokenService;
+import work.ambitlu.service.IQysTaskRecordService;
 
 import java.util.List;
 
@@ -23,6 +28,10 @@ public class AppTokenFactory implements AbstractTaskFactory{
 	private SalveDataBaseService salveDataBaseService;
 	@Autowired
 	private IAppTokenService appTokenService;
+	@Autowired
+	private ApplicationContext applicationContext;
+	@Autowired
+	private IQysTaskRecordService qysTaskRecordService;
 
 	@Override
 	public TaskVo executeTask() {
@@ -30,8 +39,16 @@ public class AppTokenFactory implements AbstractTaskFactory{
 
 		TaskVo taskVo = new TaskVo();
 
-		//	1. 获取所有数据源 暂存当前操作数据源
-		List<String> stringList = salveDataBaseService.dataBase().subList(20,30);
+		/*
+		1. 获取所有数据源 暂存当前操作数据源
+		过滤出需要执行的
+		 */
+		List<String> stringList = salveDataBaseService.dataBase();
+
+		List<QysTaskRecord> qysTaskRecords = qysTaskRecordService.queryAllByType(OperatorType.APPTOKEN);
+
+		stringList.removeIf(s -> qysTaskRecords.stream().anyMatch(qysTaskRecord -> qysTaskRecord.getSourceName().equals(s)));
+
 		taskVo.setTotal(stringList.size());
 
 		DataSourceProperty qys = salveDataBaseService.get("qys");
@@ -43,9 +60,11 @@ public class AppTokenFactory implements AbstractTaskFactory{
 		for (String dataSourceName : stringList) {
 			try {
 				log.debug("startIng changeDataBase.......dataSourceName:{}",dataSourceName);
+				log.info(dataSourceName + "////////");
 				salveDataBaseService.changeDataBase(dataSourceName);
 				appTokenService.create();
 				taskVo.addSuccess();
+				applicationContext.publishEvent(new AppTokenTaskEvent(dataSourceName));
 			} catch (Exception e) {
 				taskVo.addErrorMessage(dataSourceName ,e.getMessage());
 			} finally {
