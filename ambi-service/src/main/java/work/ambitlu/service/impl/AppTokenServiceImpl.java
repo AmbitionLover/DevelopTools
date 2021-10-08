@@ -97,9 +97,17 @@ public class AppTokenServiceImpl extends ServiceImpl<AppTokenMapper, AppToken> i
 		return s;
 	}
 
+	public static void main(String[] args) {
+		try {
+			String s6HTEoBWd0 = SecretAesUtil.secretDecrypt("S6HTEoBWd0", "BE+9rM1hlCAEZITvQUK08R1KRTi3W0wPPa0m4zDBo7I=");
+			System.out.println(s6HTEoBWd0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public void delete() {
-
 
 	}
 }

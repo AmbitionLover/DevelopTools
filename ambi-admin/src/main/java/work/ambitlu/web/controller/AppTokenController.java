@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import work.ambitlu.core.domian.AjaxResult;
 import work.ambitlu.service.IAppTokenService;
+import work.ambitlu.utils.SecretAesUtil;
 
 /**
  * 一些声明信息
@@ -36,6 +37,16 @@ public class AppTokenController {
 	@GetMapping("/get")
 	public AjaxResult get(){
 		return AjaxResult.success(appTokenService.de("ZhaoShuaiA"));
+	}
+
+	@GetMapping("/decrypt")
+	public AjaxResult Decrypt(String token,String decryptSecret){
+		try {
+			String decrypt = SecretAesUtil.secretDecrypt(token, decryptSecret);
+			return AjaxResult.success(decrypt);
+		} catch (Exception e) {
+			return AjaxResult.error(e.getMessage());
+		}
 	}
 
 
