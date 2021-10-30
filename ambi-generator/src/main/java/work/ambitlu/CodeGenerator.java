@@ -23,11 +23,13 @@ public class CodeGenerator {
 
 	public static final String FILE_PATH = "/ambi-service";
 	// qys
-	//public static final String DB_URL = "jdbc:mysql://192.168.1.140:3306/BZBW?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8";
+	public static final String DB_URL = "jdbc:mysql://192.168.1.140:3306/WJFWZX?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8";
+	public static final String DB_USERNAME = "qiyuesuo";
+	public static final String DB_PASSWORD = "Admin#1234";
 	// tools
-	public static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/qystools?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8";
-	public static final String DB_USERNAME = "root";
-	public static final String DB_PASSWORD = "root";
+	//public static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/qys427?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8";
+	//public static final String DB_USERNAME = "root";
+	//public static final String DB_PASSWORD = "root";
 
 	/**
 	 * <p>
