@@ -106,6 +106,7 @@ public class AppTokenServiceImpl extends ServiceImpl<AppTokenMapper, AppToken> i
 		}
 	}
 
+	@DS("qys")
 	@Override
 	public void delete() {
 		AppToken one = getAppToken(TOKEN_NAME);
