@@ -108,6 +108,10 @@ public class AppTokenServiceImpl extends ServiceImpl<AppTokenMapper, AppToken> i
 
 	@Override
 	public void delete() {
+		AppToken one = getAppToken(TOKEN_NAME);
 
+		if (one != null){
+			this.removeById(one.getId());
+		}
 	}
 }

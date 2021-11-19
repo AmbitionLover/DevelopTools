@@ -10,7 +10,7 @@ import work.ambitlu.service.IAppTokenService;
 import work.ambitlu.utils.SecretAesUtil;
 
 /**
- * 一些声明信息
+ * apptoken
  *
  * @author Ambi 赵帅
  * @date 2021-04-25 17:26
