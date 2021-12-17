@@ -56,7 +56,7 @@ public class DEController {
 			byte[] result = cipher.doFinal(Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8)));
 			return new String(result, StandardCharsets.UTF_8);
 		} catch (Exception e) {
-			return data;
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -15,7 +15,7 @@ import work.ambitlu.service.IQysTaskRecordService;
  *
  * @author Ambi 赵帅
  */
-@Component()
+@Component
 @AllArgsConstructor
 public class SalveDataSourceTaskListener {
 
